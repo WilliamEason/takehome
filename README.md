@@ -2,7 +2,7 @@
 1. database-application
 2. memory-leak
 
-I have added a SOLUTION.md file to each with some of my thoughts.
+I have added a README.md file to each with some of my thoughts.
 
 I have _not_ extensively cleaned the code of log statements/etc. I figure those give a bit more insight into what I was doing. I also didn't run this through a linter, so I may have missed some `;` / etc.
 
