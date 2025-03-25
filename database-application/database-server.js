@@ -4,7 +4,8 @@ const PORT = 8901;
 const DATABASE_SIZE = 100000;
 const MAX_SHARD_SIZE = 9000;
 
-// The "database" is simply an ordered list of media chunk metadata objects.
+// The "database" is a list of ordered lists 
+// Each list represents a "shard" of media chunk metadata objects.
 const orderedLists = [];
 
 // Create fake media segment data and populate the database with the results.
