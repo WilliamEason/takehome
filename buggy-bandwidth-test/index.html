@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Buggy Bandwidth Test</title>
+
+    <style type="text/css">
+    html, body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    html {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        background-color: #000;
+        color: #fff;
+    }
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+    a,
+    a:visited {
+        color: #0eb2f0;
+    }
+
+    /* Layout */
+
+    #app-wrapper {
+        padding: 2em;
+    }
+
+    #video-wrapper {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #000;
+        width: 60em;
+        border: 1px solid #777;
+        position: relative;
+    }
+    #media-element {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    /* Button */
+    button,
+    a.button,
+    .button {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #0eb2f0;
+        text-align: center;
+        border: none;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        cursor: pointer;
+    }
+
+    /* A row of buttons */
+    .button-row {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .button-row > .button {
+        margin-left: 0.5em;
+        min-width: 7em;
+    }
+    .button-row > .button:first-child {
+        margin-left: 0;
+    }
+
+    table td {
+        padding-top: 0.3em;
+        padding-bottom: 0.4em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        border-top: 1px solid #777;
+    }
+    table td:first-child {
+        border-right: 1px solid #777;
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app-wrapper" style="max-width: 60em">
+        <h1>Bandwidth Test</h1>
+        <div id="video-wrapper">
+            <video id="media-element"></video>
+        </div>
+        <p><span class="button" id="run-test-button">Run Test</span> <span class="button" id="stop-button">Abort Test</span></p>
+        <p><span class="button" id="upgrade-button">Upgrade Quality Level</span> <span class="button" id="downgrade-button">Downgrade Quality Level</span></p>
+        <p><strong>NOTE:</strong> The Upgrade/Downgrade buttons are throttled to only fire once every 3 seconds</p>
+
+        <h3>Bandwidth Info</h3>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr><td>variant quality level</td><td id="table-variant">TBD</td></tr>
+                <tr><td>avg segment latency</td><td id="table-segment-latency">TBD</td></tr>
+                <tr><td>avg download rate</td><td id="table-download-rate">TBD</td></tr>
+                <tr><td>Buffered seconds/MB</td><td id="table-buffer-size">TBD</td></tr>
+                <tr><td>avg playback rate</td><td id="table-playback-rate">TBD</td></tr>
+            </tbody>
+        </table>
+    </div><!-- #app-wrapper -->
+
+    <script src="bandwidth-test.js"></script>
+</body>
+</html>
+

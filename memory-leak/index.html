@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Memory Leak</title>
+
+    <style type="text/css">
+    html, body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    html {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        background-color: #000;
+        color: #fff;
+    }
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+    a,
+    a:visited {
+        color: #0eb2f0;
+    }
+
+    /* Layout */
+
+    #app-wrapper {
+        padding: 2em;
+    }
+
+    /* Button */
+    button,
+    a.button,
+    .button {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #0eb2f0;
+        text-align: center;
+        border: none;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        cursor: pointer;
+    }
+
+    /* A row of buttons */
+    .button-row {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .button-row > .button {
+        margin-left: 0.5em;
+        min-width: 7em;
+    }
+    .button-row > .button:first-child {
+        margin-left: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app-wrapper" style="max-width: 60em">
+        <h1>Memory Leak Problem</h1>
+        <p><span class="button" id="run-test-button">Run Test</span></p>
+
+        <p>
+            We have a confirmed memory leak in a hypothetical video player. We've been able to isolate the problem
+            to our MP4 segment loading pipeline. So, we have extracted the pipeline to this
+            test in <code>./memory-leak.js</code>. After logging out the memory consumption in the Chrome browser we have noticed that the buffer
+            size remains nearly constant, but the overall memory consumption of the browser runtime continues to grow
+            out of control.
+        </p>
+        <p>
+            Your task is to make a change to the code in <code>./memory-leak.js</code> to fix this memory leak and hold
+            the overall memory consumption more consistent.
+        </p>
+        <p>
+            Open the developer tools and observe the console as you run this test to see the results.
+        </p>
+        <p>
+            <strong>!!NOTE!!</strong><br>This test only works in Chrome because of the use of the <code>performance.memory</code> API.
+        </p>
+    </div><!-- #app-wrapper -->
+
+    <script src="memory-leak.js"></script>
+</body>
+</html>
+

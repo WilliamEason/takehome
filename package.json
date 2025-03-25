@@ -1,0 +1,14 @@
+{
+  "name": "js-hls-problems",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Problems waiting for solutions",
+  "scripts": {
+    "start": "http-server -c-1 ./"
+  },
+  "dependencies": {
+    "http-server": "0.12.3"
+  },
+  "author": "Disney Streaming Services",
+  "license": "UNLICENSED"
+}
