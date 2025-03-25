@@ -1,3 +1,9 @@
+# Solutions Provided
+1. database-application
+2. memory-leak
+
+I have added a SOLUTION.md file to each with some of my thoughts.
+
 # HLS Streaming / JavaScript Debugging Exercises
 There are 4 potential problems to choose from. There are two General Programming Problems, and 2 Video Player Debugging problems. All problems are very much focused on JavaScript programming. The General Programming Problems run in the Node.js environment, while the Video Player Debugging Problems run in the Chrome web browser from a Node.js server.
 
