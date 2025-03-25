@@ -4,6 +4,8 @@
 
 I have added a SOLUTION.md file to each with some of my thoughts.
 
+I have _not_ extensively cleaned the code of log statements/etc. I figure those give a bit more insight into what I was doing. I also didn't run this through a linter, so I may have missed some `;` / etc.
+
 # HLS Streaming / JavaScript Debugging Exercises
 There are 4 potential problems to choose from. There are two General Programming Problems, and 2 Video Player Debugging problems. All problems are very much focused on JavaScript programming. The General Programming Problems run in the Node.js environment, while the Video Player Debugging Problems run in the Chrome web browser from a Node.js server.
 

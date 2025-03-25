@@ -21,6 +21,7 @@ function createFakeMediaSegmentsData() {
     for (let i = 0; i < DATABASE_SIZE; i++) {
         const duration = Math.round(Math.random() * (maxDuration - minDuration) + minDuration);
 
+        // Once we fill up a shard, instantiate the next one and point to it
         if (orderedLists[currentShard].length >= MAX_SHARD_SIZE) {
             currentShard++;
             orderedLists[currentShard] = [];
@@ -46,16 +47,16 @@ const server = http.createServer((req, res) => {
     let status = 404;
 
     if (url.pathname === '/range') {
-        let lastShardIdx = (orderedLists.length)-1
-        let lastItemOfLastShard = (DATABASE_SIZE - 1) - (lastShardIdx * MAX_SHARD_SIZE)
+        let lastShard = (orderedLists.length) - 1;
+        let lastShardIdx = (DATABASE_SIZE - 1) - (lastShard * MAX_SHARD_SIZE);
 
-        // console.log('last shard idx %d, last item idx %d', lastShardIdx, lastItemOfLastShard)
-        // console.log(orderedLists[lastShardIdx][lastItemOfLastShard])
+        // console.log('last shard idx %d, last item idx %d', lastShard, lastShardIdx)
+        // console.log(orderedLists[lastShard][lastShardIdx])
 
         status = 200;
         response.result = {
             start: orderedLists[0][0].start,
-            end: orderedLists[lastShardIdx][lastItemOfLastShard].end,
+            end: orderedLists[lastShard][lastShardIdx].end,
             length: DATABASE_SIZE,
         };
     } else if (url.pathname === '/query') {
@@ -66,7 +67,6 @@ const server = http.createServer((req, res) => {
 
         console.log('getting index: %d, shard %d, shardIdx: %d', index, shard, shardIdx);
         const result = orderedLists[shard][shardIdx];
-        //const result = orderedLists[0][index] || null;
 
         if (result) {
             status = 200;
@@ -98,7 +98,4 @@ server.on('listening', () => {
 // Seed the database and start the server.
 createFakeMediaSegmentsData();
 console.log('created shards %d, dbSize: %d', orderedLists.length, DATABASE_SIZE)
-let lastShardIdx = orderedLists.length-1
-let lastItemOfLastShard = (DATABASE_SIZE - 1) - (lastShardIdx * MAX_SHARD_SIZE)
-console.log('last shard idx %d, last item idx %d', lastShardIdx, lastItemOfLastShard)
 server.listen(PORT);

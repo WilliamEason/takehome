@@ -11,7 +11,7 @@ let knownListLength;
 let averageDuration = 0;
 let durationsRecorded = 0;
 
-// Track the lowest segment start to help make a initial guesses
+// Track the lowest segment start to help make initial guesses
 let lowestStartTime = 0;
 
 
@@ -43,6 +43,7 @@ function makeDatabaseRequest(pathname, callback) {
 }
 
 function findSegment(res, knownLength, position) {
+    // The following represent both the indexes, and value boundaries of our binary search derived algorithm
     var leftBoundIdx = 0
     var leftBoundVal = 0
     var rightBoundIdx = knownLength
@@ -58,6 +59,8 @@ function findSegment(res, knownLength, position) {
 
     function calculateTargetLookingRight(lIdx, lVal, targetVal, avgVal) {
         computedIndex = Math.round(lIdx + ((targetVal - lVal) / avgVal))
+        // Because we're rounding, we may need to "bump" this value in the right direction if our
+        // prediction landed on an existing boundary index
         if (computedIndex >= rightBoundIdx) {
             computedIndex = rightBoundIdx - 1
         }  else if (computedIndex <= leftBoundIdx) {
@@ -69,15 +72,14 @@ function findSegment(res, knownLength, position) {
 
     function calculateTargetLookingLeft(rIdx, rVal, targetVal, avgVal) {
         computedIndex = Math.round(rIdx - ((rVal - targetVal) / avgVal))
+        // Because we're rounding, we may need to "bump" this value in the right direction if our
+        // prediction landed on an existing boundary index
         if (computedIndex <= leftBoundIdx) {
             computedIndex = leftBoundIdx + 1
         } else if (computedIndex >= rightBoundIdx) {
             computedIndex = rightBoundIdx - 1
         }
 
-        if (computedIndex >= knownLength) {
-            return knownLength - 1
-        }
         // console.log('calculated left target idx %d', computedIndex)
         return computedIndex
     }
@@ -122,7 +124,6 @@ function findSegment(res, knownLength, position) {
                 // console.log('looking to the right', nextGuess)
             }
 
-            //tryNext(index + 1);
             tryNext(nextGuess);
         });
     }
